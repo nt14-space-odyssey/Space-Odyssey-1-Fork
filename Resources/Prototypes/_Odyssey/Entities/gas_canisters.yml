@@ -5,7 +5,7 @@
   description: Канистра, в которой может содержаться газ любого вида. В этой, предположительно, содержится БЗ. Можно прикрепить к порту коннектора с помощью гаечного ключа.
   components:
   - type: Sprite
-    sprite: _Odyssey/canister.rsi
+    sprite: _Odyssey/Structures/Storage/canister.rsi
     layers:
     - state: bz
   - type: GasCanister
@@ -56,7 +56,7 @@
   description: Канистра, в которой может содержаться газ любого вида. В этой, предположительно, содержится хилиум. Можно прикрепить к порту коннектора с помощью гаечного ключа.
   components:
   - type: Sprite
-    sprite: _Odyssey/canister.rsi
+    sprite: _Odyssey/Structures/Storage/canister.rsi
     layers:
     - state: healium
   - type: GasCanister
@@ -109,7 +109,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Odyssey/canister.rsi
+    sprite: _Odyssey/Structures/Storage/canister.rsi
     state: bz-1
 
 - type: entity
@@ -118,5 +118,5 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Odyssey/canister.rsi
+    sprite: _Odyssey/Structures/Storage/canister.rsi
     state: healium-1
