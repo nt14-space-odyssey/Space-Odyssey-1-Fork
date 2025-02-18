@@ -755,7 +755,7 @@ public sealed class PullingSystem : EntitySystem
             return false;
 
         var filter = Filter.Empty()
-            .AddPlayersByPvs(Transform(puller))
+            .AddPlayersByPvs(puller.Owner)
             .RemovePlayerByAttachedEntity(puller.Owner)
             .RemovePlayerByAttachedEntity(pullable.Owner);
 
