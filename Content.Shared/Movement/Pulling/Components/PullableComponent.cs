@@ -1,6 +1,8 @@
 using Content.Shared.Alert;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Content.Shared.Movement.Pulling.Systems;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Movement.Pulling.Components;
 
@@ -16,22 +18,18 @@ public sealed partial class PullableComponent : Component
     /// </summary>
     [AutoNetworkedField, DataField]
     public EntityUid? Puller;
-
     /// <summary>
     /// The pull joint.
     /// </summary>
     [AutoNetworkedField, DataField]
     public string? PullJointId;
-
     public bool BeingPulled => Puller != null;
-
     /// <summary>
     /// If the physics component has FixedRotation should we keep it upon being pulled
     /// </summary>
     [Access(typeof(Systems.PullingSystem), Other = AccessPermissions.ReadExecute)]
     [ViewVariables(VVAccess.ReadWrite), DataField("fixedRotation")]
     public bool FixedRotationOnPull;
-
     /// <summary>
     /// What the pullable's fixedrotation was set to before being pulled.
     /// </summary>
@@ -41,6 +39,22 @@ public sealed partial class PullableComponent : Component
 
     [DataField]
     public ProtoId<AlertPrototype> PulledAlert = "Pulled";
-}
 
-public sealed partial class StopBeingPulledAlertEvent : BaseAlertEvent;
+    [DataField]
+    public Dictionary<GrabStage, short> PulledAlertAlertSeverity = new()
+    {
+        { GrabStage.No, 0 },
+        { GrabStage.Soft, 1 },
+        { GrabStage.Hard, 2 },
+        { GrabStage.Suffocate, 3 },
+    };
+
+    [AutoNetworkedField, DataField]
+    public GrabStage GrabStage = GrabStage.No;
+
+    [AutoNetworkedField, DataField]
+    public float GrabEscapeChance = 1f;
+
+    [AutoNetworkedField]
+    public TimeSpan NextEscapeAttempt = TimeSpan.Zero;
+}
