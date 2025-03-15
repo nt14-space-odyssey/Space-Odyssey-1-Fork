@@ -1,0 +1,13 @@
+- type: entity
+  parent: BasePlushie
+  id: SHAMAN #z!
+  name: ШАМАН
+  suffix: ШАМАН
+  description: Сразу видно, кто тут русский!
+  components:
+  - type: Sprite
+    sprite: _Odyssey/shaman.rsi
+    state: shaman
+  - type: EmitSoundOnUse
+    sound:
+      path: _Odyssey/shaman.ogg
